@@ -1,0 +1,79 @@
+---
+name: Labtask Topology
+prefix: ""
+
+mgmt:
+    network: custom_mgmt
+    ipv4-subnet: 172.16.1.0/24
+
+topology:
+    kinds:
+        arista_ceos:
+            enforce-startup-config: true
+            image: arista/ceos:4.34.6M
+            binds:
+                - interface_mapping.json:/mnt/flash/EosIntfMapping.json:ro
+    defaults:
+        kind: arista_ceos
+    nodes:
+        dc1-spine1:
+            mgmt-ipv4: 172.16.1.11
+            startup-config: init-configs/dc1-spine1.cfg
+        dc1-spine2:
+            mgmt-ipv4: 172.16.1.12
+            startup-config: init-configs/dc1-spine2.cfg
+        dc1-leaf1a:
+            mgmt-ipv4: 172.16.1.101
+            startup-config: init-configs/dc1-leaf1a.cfg
+        dc1-leaf1b:
+            mgmt-ipv4: 172.16.1.102
+            startup-config: init-configs/dc1-leaf1b.cfg
+        dc1-leaf2:
+            mgmt-ipv4: 172.16.1.103
+            startup-config: init-configs/dc1-leaf2.cfg
+        dc1-leaf1-server1:
+            mgmt-ipv4: 172.16.1.181
+            startup-config: init-configs/dc1-leaf1-server1.cfg
+        dc1-leaf2-server1:
+            mgmt-ipv4: 172.16.1.182
+            startup-config: init-configs/dc1-leaf2-server1.cfg
+        dc1-l2host1:
+            mgmt-ipv4: 172.16.1.201
+            kind: linux
+            image: wbitt/network-multitool:3.22-extra
+            # cmd: ip addr add 10.1.1.11/24 dev eth1 && ip link set eth1 up
+            exec: 
+            - ip addr add 10.1.1.11/24 dev eth1
+            - ip link set eth1 up   
+        dc1-l2host2:
+            mgmt-ipv4: 172.16.1.202
+            kind: linux
+            image: wbitt/network-multitool:3.22-extra
+            # image: alpine:latest
+            exec: 
+            - ip addr add 10.1.1.12/24 dev eth1
+            - ip link set eth1 up   
+
+    links:
+        # dc1
+        # spines to a/b leafs
+        - endpoints: ["dc1-spine1:eth1", "dc1-leaf1a:eth1"]
+        - endpoints: ["dc1-spine1:eth2", "dc1-leaf1b:eth1"]
+        - endpoints: ["dc1-spine1:eth3", "dc1-leaf2:eth1"]
+        - endpoints: ["dc1-spine2:eth1", "dc1-leaf1a:eth2"]
+        - endpoints: ["dc1-spine2:eth2", "dc1-leaf1b:eth2"]
+        - endpoints: ["dc1-spine2:eth3", "dc1-leaf2:eth2"]
+        # leaf a/b peer-links
+        - endpoints: ["dc1-leaf1a:eth3", "dc1-leaf1b:eth3"]
+        - endpoints: ["dc1-leaf1a:eth4", "dc1-leaf1b:eth4"]
+        # hosts
+        # host are using cEOS-lab image for 3 reasons
+        # - to avoid pulling another image
+        # - to support all kind of weird connections we may need for AVD examples
+        # - simplify host config
+        - endpoints: ["dc1-leaf1a:eth5", "dc1-leaf1-server1:eth1"]
+        - endpoints: ["dc1-leaf1b:eth5", "dc1-leaf1-server1:eth2"]
+        - endpoints: ["dc1-leaf2:eth5", "dc1-leaf2-server1:eth1"]
+        - endpoints: ["dc1-leaf1a:eth6", "dc1-l2host1:eth1"]
+        - endpoints: ["dc1-leaf2:eth6", "dc1-l2host2:eth1"]
+

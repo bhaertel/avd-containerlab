@@ -1,0 +1,10 @@
+.devcontainer/eos-downloader.env
+cEOS*
+labtask/clab-*
+labtask/config_backup/
+labtask/documentation/
+labtask/clab-Labtask Topology/
+labtask/intended/
+config_backup/
+documentation/
+intended/

@@ -1,0 +1,35 @@
+{
+    "name": "Arista AVD & Containerlab Lab",
+    "build": {
+        "dockerfile": "Dockerfile"
+    },
+    "features": {
+        "ghcr.io/devcontainers/features/docker-in-docker:1": {
+            "version": "latest",
+            "moby": false
+        }
+    },
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "arista.arista-avd",
+                "ms-python.python",
+                "vscjava.vscode-ansible",
+                "redhat.ansible",
+                "srl-labs.vscode-containerlab",
+                "redhat.vscode-yaml",
+                "ms-azuretools.vscode-docker"
+            ]
+        }
+    },
+    "initializeCommand": "bash -lc 'cd \"${localWorkspaceFolder}\" && touch .devcontainer/eos-downloader.env'",
+    "overrideCommand": false,
+    "postStartCommand": "bash ${containerWorkspaceFolder}/.devcontainer/post-start.sh",
+    "remoteUser": "vscode",
+    "runArgs": [
+        "--env-file",
+        ".devcontainer/eos-downloader.env",
+        "--privileged",
+        "--net=host"
+    ]
+}
