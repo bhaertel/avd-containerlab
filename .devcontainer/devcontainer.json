@@ -13,11 +13,8 @@
         "vscode": {
             "extensions": [
                 "arista.arista-avd",
-                "ms-python.python",
                 "vscjava.vscode-ansible",
-                "redhat.ansible",
                 "srl-labs.vscode-containerlab",
-                "redhat.vscode-yaml",
                 "ms-azuretools.vscode-docker"
             ]
         }
@@ -29,7 +26,6 @@
     "runArgs": [
         "--env-file",
         ".devcontainer/eos-downloader.env",
-        "--privileged",
-        "--net=host"
+        "--privileged"
     ]
 }
