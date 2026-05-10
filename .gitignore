@@ -1,4 +1,5 @@
 .devcontainer/eos-downloader.env
+.devcontainer/devcontainer-lock.json
 cEOS*
 labtask/clab-*
 labtask/config_backup/
