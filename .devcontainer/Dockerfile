@@ -25,6 +25,9 @@ RUN mkdir -p /usr/share/ansible/collections \
 # 5. Install Arista ARDL Downloader
 RUN uv pip install --system eos-downloader
 
+# 6. Install lab automation Python dependencies
+RUN uv pip install --system nornir nornir-utils pyeapi PyYAML
+
 # Set up workdir
 WORKDIR /workspaces
 

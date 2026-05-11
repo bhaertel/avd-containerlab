@@ -9,3 +9,6 @@ labtask/intended/
 config_backup/
 documentation/
 intended/
+eapi_collector/outputs/
+eapi_collector/__pycache__/
+*.py[cod]
