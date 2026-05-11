@@ -11,15 +11,19 @@ RUN bash -c "$(curl -sL https://get.containerlab.dev)"
 # Allow the default remote user to run containerlab without manual usermod.
 RUN usermod -aG clab_admins vscode
 
-# 2. Install pyavd with [ansible] 
-RUN pip3 install "pyavd[ansible]==6.1.0"
+# 2. Install uv for Python package management
+ENV UV_INSTALL_DIR=/usr/local/bin
+RUN bash -c "curl -LsSf https://astral.sh/uv/install.sh | sh"
 
-# 3. Install Arista.AVD Ansible Collection
+# 3. Install pyavd with [ansible] 
+RUN uv pip install --system "pyavd[ansible]==6.1.0"
+
+# 4. Install Arista.AVD Ansible Collection
 RUN mkdir -p /usr/share/ansible/collections \
     && ansible-galaxy collection install arista.avd:==6.1.0 -p /usr/share/ansible/collections
 
-# 4. Install Arista ARDL Downloader
-RUN pip3 install eos-downloader
+# 5. Install Arista ARDL Downloader
+RUN uv pip install --system eos-downloader
 
 # Set up workdir
 WORKDIR /workspaces
