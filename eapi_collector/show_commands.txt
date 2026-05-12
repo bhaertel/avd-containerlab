@@ -1,0 +1,2 @@
+# One show command per line
+show version
