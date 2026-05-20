@@ -1,5 +1,74 @@
 {
-  "freeTextAnnotations": [],
+  "freeTextAnnotations": [
+    {
+      "id": "freeText_1779261426993",
+      "text": "10.1.1.11 \nVLAN 3401\nL2-VNI",
+      "position": {
+        "x": 133.39407744874723,
+        "y": 620.5011389521641
+      },
+      "fontSize": 14,
+      "fontColor": "#bbbebf",
+      "fontWeight": "normal",
+      "fontStyle": "normal",
+      "textDecoration": "none",
+      "textAlign": "center",
+      "fontFamily": "Arial",
+      "width": 93,
+      "height": 136
+    },
+    {
+      "id": "freeText_1779261551183",
+      "text": "10.1.1.12\nVLAN 3401\nL2-VNI",
+      "position": {
+        "x": 616.3553530751708,
+        "y": 621.3006833712984
+      },
+      "fontSize": 14,
+      "fontColor": "#bbbebf",
+      "fontWeight": "normal",
+      "fontStyle": "normal",
+      "textDecoration": "none",
+      "textAlign": "center",
+      "fontFamily": "Arial",
+      "width": 89,
+      "height": 155
+    },
+    {
+      "id": "freeText_1779261725879",
+      "text": "10.10.12.182\nVLAN 12   \nL3-VNI  \nVRF10",
+      "position": {
+        "x": 479.4533029612756,
+        "y": 620.5011389521642
+      },
+      "fontSize": 14,
+      "fontColor": "#bbbebf",
+      "fontWeight": "normal",
+      "fontStyle": "normal",
+      "textDecoration": "none",
+      "textAlign": "center",
+      "fontFamily": "Arial",
+      "width": 108,
+      "height": 131
+    },
+    {
+      "id": "freeText_1779261860046",
+      "text": "10.10.11.181\nVLAN 11   \nL3-VNI  \nVRF10",
+      "position": {
+        "x": 228.51936218678821,
+        "y": 617.2209567198179
+      },
+      "fontSize": 14,
+      "fontColor": "#bbbebf",
+      "fontWeight": "normal",
+      "fontStyle": "normal",
+      "textDecoration": "none",
+      "textAlign": "center",
+      "fontFamily": "Arial",
+      "width": 119,
+      "height": 185
+    }
+  ],
   "freeShapeAnnotations": [],
   "trafficRateAnnotations": [],
   "groupStyleAnnotations": [],
